@@ -61,6 +61,10 @@
     <Reference Include="Modules-ASM">
       <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\GTFO\MelonLoader\Managed\Modules-ASM.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\GTFO\MelonLoader\Managed\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -80,6 +84,9 @@
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\GTFO\MelonLoader\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Utils-ASM">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\GTFO\MelonLoader\Managed\Utils-ASM.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

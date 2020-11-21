@@ -31,7 +31,6 @@ namespace GTFO.Custom.Rundown.CRundown
 
         public CDataBlock(string[] supportedPathForWrite, string[] supportedPathForRead)
         {
-
             //_DeserializeSetting.Converters.Add(new StringUintDelegateConverter());
         }
 

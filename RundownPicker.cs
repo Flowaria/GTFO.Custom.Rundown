@@ -1,31 +1,28 @@
 ﻿using CellMenu;
 using GTFO.Custom.Rundown.CRundown;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GTFO.Custom.Rundown
 {
-    
-
     public static class RundownPicker
     {
         private static CM_Item _Button;
+
         public static CM_Item Button
         {
             get { return _Button; }
             set
             {
-                if(value != null)
+                if (value != null)
                 {
                     _Button = value;
                     UpdateText();
                 }
             }
         }
+
         public static bool IsMainScreen { get; set; } = false;
+
         public static bool IsDefault
         {
             get
@@ -33,6 +30,7 @@ namespace GTFO.Custom.Rundown
                 return SelectedID == uint.MaxValue;
             }
         }
+
         public static uint SelectedID
         {
             get
@@ -130,7 +128,7 @@ namespace GTFO.Custom.Rundown
             if (IsPreviousAvailable) text = $"< {text}";
             if (IsNextAvailable) text = $"{text} >";
 
-            Button.SetText(text);
+            Button?.SetText(text);
         }
 
         private static void UpdateTextStyle2()
@@ -147,9 +145,9 @@ namespace GTFO.Custom.Rundown
             }
 
             string text2 = string.Empty;
-            for(int i = 0;i<_Rundowns.Count;i++)
+            for (int i = 0; i < _Rundowns.Count; i++)
             {
-                if(i == _CurrentIndex)
+                if (i == _CurrentIndex)
                 {
                     text2 += "o";
                 }
@@ -159,7 +157,7 @@ namespace GTFO.Custom.Rundown
                 }
             }
 
-            Button.SetText(text+ "\n<size=60%>" + text2);
+            Button.SetText(text + "\n<size=60%>" + text2);
         }
     }
 }

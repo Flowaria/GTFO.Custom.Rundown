@@ -7,16 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 
 namespace GTFO.Custom.Rundown.CRundown
 {
-    using Il2CppCollections = Il2CppSystem.Collections.Generic;
-
     public struct IDChangePair
     {
         public uint Previous;
@@ -66,7 +59,7 @@ namespace GTFO.Custom.Rundown.CRundown
             try
             {
                 var setting = GameDataSettingBase;
-                
+
                 var block = JsonConvert.DeserializeObject<T>(content, setting);
 
                 if (GameDataBlockBase<T>.HasBlock(block.persistentID))
@@ -85,7 +78,7 @@ namespace GTFO.Custom.Rundown.CRundown
                 GameDataBlockBase<T>.AddBlock((T)block, -1);
                 return change;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MelonLogger.Log(e.ToString());
                 return default;
@@ -117,7 +110,7 @@ namespace GTFO.Custom.Rundown.CRundown
             var change = DissolveBase<LevelLayoutDataBlock>(content, _LayoutOffset++);
             var block = LevelLayoutDataBlock.GetBlock(change.New);
 
-            foreach(var zone in block.Zones)
+            foreach (var zone in block.Zones)
             {
                 ApplyChangedPair(puzzleChange, zone.ChainedPuzzleToEnter, (uint newID) =>
                 {
@@ -139,12 +132,12 @@ namespace GTFO.Custom.Rundown.CRundown
             var block = RundownDataBlock.GetBlock(change.New);
 
             MelonLogger.Log("Null?");
-            if(block == null)
+            if (block == null)
             {
                 MelonLogger.Log($"Null {change.New}");
             }
 
-            foreach(var map in block.TierA)
+            foreach (var map in block.TierA)
             {
                 applyChanges(map);
             }
@@ -217,7 +210,7 @@ namespace GTFO.Custom.Rundown.CRundown
 
         private static void ApplyChangedPair(IDChangePair[] pairs, uint currentID, Action<uint> onChangeDetected)
         {
-            if(pairs == null)
+            if (pairs == null)
             {
                 return;
             }

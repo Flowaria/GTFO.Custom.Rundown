@@ -1,10 +1,6 @@
 ﻿using Harmony;
 using MelonLoader;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GTFO.Custom.Rundown.Patches
 {
@@ -13,16 +9,13 @@ namespace GTFO.Custom.Rundown.Patches
     {
         public static void Prefix(string name, ref string value)
         {
-            if(RundownPicker.IsDefault)
+            if (RundownPicker.IsDefault) //We don't need to touch it when it's official rundown
             {
                 return;
             }
 
-            if(name.Equals("PublicName") && !value.Contains("[CustomRundown]"))
-            {
-                value = $"{value} [CustomRundown]-{RundownPicker.SelectedChecksum}";
-                MelonLogger.Log($"Found LevelName checksum generation! new name: {value}");
-            }
+            value = $"{value} [CustomRundown]-{RundownPicker.SelectedChecksum}";
+            MelonLogger.Log($"Found LevelName checksum generation! new name: {value}");
         }
     }
 }

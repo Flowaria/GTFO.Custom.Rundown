@@ -3,10 +3,6 @@ using Globals;
 using Harmony;
 using MelonLoader;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GTFO.Custom.Rundown.Patches
 {
@@ -18,11 +14,11 @@ namespace GTFO.Custom.Rundown.Patches
             RundownPicker.Button = __instance.m_btnStart;
             RundownPicker.IsMainScreen = true;
 
-            __instance.m_btnStart.add_OnBtnPressCallback(new Action<int>(id => 
+            __instance.m_btnStart.add_OnBtnPressCallback(new Action<int>(id =>
             {
                 RundownPicker.IsMainScreen = false;
 
-                if(!RundownPicker.IsDefault)
+                if (!RundownPicker.IsDefault)
                 {
                     MelonLogger.Log($"Value before: {Global.RundownIdToLoad}");
 

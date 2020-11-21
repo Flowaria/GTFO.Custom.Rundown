@@ -1,20 +1,13 @@
-﻿using GameData;
-using GTFO.Custom.Rundown.Converters;
-using MelonLoader;
+﻿using MelonLoader;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace GTFO.Custom.Rundown.CRundown
 {
-    using Il2CppCollections = Il2CppSystem.Collections.Generic;
-
     [Obsolete]
     public static partial class DataBlocksDissolver
     {
@@ -30,7 +23,7 @@ namespace GTFO.Custom.Rundown.CRundown
 
         public static string FileToMD5(string path)
         {
-            if(File.Exists(path))
+            if (File.Exists(path))
             {
                 var bytes = _MD5.ComputeHash(File.ReadAllBytes(path));
                 var md5 = BitConverter.ToString(bytes).Replace("-", "").ToLower();
@@ -65,7 +58,7 @@ namespace GTFO.Custom.Rundown.CRundown
                     }
 
                     var manifast = JsonConvert.DeserializeObject<CRundownManifest>(File.ReadAllText(manifestFile));
-                    if(string.IsNullOrEmpty(manifast.Name))
+                    if (string.IsNullOrEmpty(manifast.Name))
                     {
                         throw new FileNotFoundException($"Manifast file doesn't have any Name for Custom Rundown: {Path.GetDirectoryName(dir)}");
                     }
@@ -74,7 +67,7 @@ namespace GTFO.Custom.Rundown.CRundown
                     _MD5Buffer += FileToMD5(rundownFile);
 
                     List<IDChangePair> fogChange = new List<IDChangePair>();
-                    foreach(var fogFile in manifast.FogSettings)
+                    foreach (var fogFile in manifast.FogSettings)
                     {
                         var change = DissolveFogSetting(File.ReadAllText(Path.Combine(dir, fogFile)));
                         fogChange.Add(change);
@@ -145,7 +138,7 @@ namespace GTFO.Custom.Rundown.CRundown
 
                 return rundowns.ToArray();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MelonLogger.Log(e.ToString());
                 return null;

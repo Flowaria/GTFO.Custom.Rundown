@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace GTFO.Custom.Rundown.CRundown
 {
@@ -13,7 +9,7 @@ namespace GTFO.Custom.Rundown.CRundown
 
         public bool TryAdd(string guid, out uint id)
         {
-            if(_Map.ContainsKey(guid))
+            if (_Map.ContainsKey(guid))
             {
                 _Map.Add(guid, _Offset++);
                 id = _Offset - 1;
@@ -26,7 +22,7 @@ namespace GTFO.Custom.Rundown.CRundown
 
         public bool TryGet(string guid, out uint id)
         {
-            if(_Map.ContainsKey(guid))
+            if (_Map.ContainsKey(guid))
             {
                 id = _Map[guid];
                 return true;

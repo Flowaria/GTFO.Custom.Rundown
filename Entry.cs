@@ -1,14 +1,8 @@
-﻿using CellMenu;
-using GameData;
+﻿using GameData;
 using GTFO.Custom.Rundown;
 using GTFO.Custom.Rundown.CRundown;
-using GTFO.Custom.Rundown.Patches;
-using GTFO.Custom.Rundown.Utils;
-using Harmony;
 using MelonLoader;
-using System;
 using System.IO;
-using System.Reflection;
 using UnityEngine;
 
 [assembly: MelonInfo(typeof(Entry), "Custom Rundown Core", "1.0", "Flowaria")]
@@ -33,7 +27,7 @@ namespace GTFO.Custom.Rundown
 
         private void Update_CheckCustomDataIsLoaded()
         {
-            if(CustomDataLoadCalled)
+            if (CustomDataLoadCalled)
             {
                 return;
             }

@@ -6,6 +6,8 @@
 
         public static CRundown CreateFromFolder(string path)
         {
+            var rundown = new CRundown();
+            rundown.Manifest = new CRundownManifest();
             return null;
         }
     }

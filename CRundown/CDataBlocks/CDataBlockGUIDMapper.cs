@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GTFO.Custom.Rundown.CRundown
+namespace GTFO.Custom.Rundown.CRundown.CDataBlocks
 {
     public class CDataBlockGUIDMapper
     {

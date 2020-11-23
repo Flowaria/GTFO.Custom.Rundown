@@ -4,11 +4,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Collections.Generic;
 
-namespace GTFO.Custom.Rundown.CRundown
+namespace GTFO.Custom.Rundown.CRundown.CDataBlocks
 {
     public class CDataBlock<T> where T : GameDataBlockBase<T>
     {
-        private readonly CDataBlockGUIDMapper _Mapper = new CDataBlockGUIDMapper();
+        public CDataBlockGUIDMapper Mapper { get; private set; } = new CDataBlockGUIDMapper();
 
         private readonly JsonSerializerSettings _DeserializeSetting = new JsonSerializerSettings()
         {
@@ -24,17 +24,32 @@ namespace GTFO.Custom.Rundown.CRundown
             }
         };
 
-        private CDataBlock() {}
+        //DON'T USE DEFAULT CTOR
+        private CDataBlock() { }
 
-        public CDataBlock(string[] supportedPathForWrite, string[] supportedPathForRead)
+        /// <summary>
+        /// ctor for CustomDataBlock
+        /// </summary>
+        /// <param name="guidContexts">Tuple array for GUID context</param>
+        public CDataBlock((string[] allowedPath, CDataBlockGUIDMapper contextMapper)[] guidContexts = null)
         {
+            if (guidContexts == null)
+            {
+                return;
+            }
+
             //_DeserializeSetting.Converters.Add(new StringUintDelegateConverter());
         }
 
-        public T ReadBlock(string content)
+        /// <summary>
+        /// Load DataBlock from JSON text
+        /// </summary>
+        /// <param name="content">JSON text content</param>
+        /// <returns></returns>
+        public T LoadBlock(string content)
         {
             var block = JsonConvert.DeserializeObject<T>(content, _DeserializeSetting);
-            var guidObject = JsonConvert.DeserializeObject<CDataBlockGUIDObject>(content);
+            var guidObject = JsonConvert.DeserializeObject<CDataBlockGUIDWrapper>(content);
             var guid = guidObject.GUID;
 
             if (string.IsNullOrEmpty(guid))
@@ -42,19 +57,16 @@ namespace GTFO.Custom.Rundown.CRundown
                 return null;
             }
 
-            if (_Mapper.TryAdd(guid, out uint id))
+            if (Mapper.TryAdd(guid, out uint id))
             {
                 block.persistentID = id;
+                GameDataBlockBase<T>.AddBlock(block, -1);
                 return block;
             }
             else
             {
                 return null;
             }
-        }
-
-        public void AddBlock()
-        {
         }
     }
 }
